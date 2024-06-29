@@ -8,6 +8,9 @@ M.config = {
   api_url = "https://api.groq.com/openai/v1/chat/completions",
 }
 
+M.original_text = nil
+M.original_range = nil
+
 -- Debugging function
 local function log(message)
   vim.fn.writefile({message}, '/tmp/groq_nvim_debug.log', 'a')
@@ -21,7 +24,9 @@ function M.setup(opts)
   end
   -- Set up commands
   vim.api.nvim_create_user_command("GroqGenerate", M.generate_code, {nargs = 1})
+  vim.api.nvim_create_user_command("GroqGenerateWithContext", M.generate_code_with_context, {nargs = '+', complete = 'file'})
   vim.api.nvim_create_user_command("GroqEdit", M.edit_code, {range = true, nargs = '?'})
+  --vim.api.nvim_create_user_command("GroqApprove", M.approve_changes, {})
 end
 
 -- Helper function to make API calls with streaming
@@ -123,5 +128,58 @@ function M.edit_code(opts)
     end
   end)
 end
+
+function M.get_file_content(file_path)
+  local file = io.open(file_path, "rb")
+  if not file then
+    print("Error: Unable to open file " .. file_path)
+    return nil
+  end
+  local content = file:read("*a")
+  file:close()
+  return content
+end
+
+function M.generate_code_with_context(opts)
+  --local prompt = opts.args
+  local prompt = table.concat(opts.fargs, " ", 1, #opts.fargs - 1)
+  local context = opts.fargs[#opts.fargs]
+  local file_content = M.get_file_content(context)
+
+  if not file_content then
+    print("Error: Unable to read context file")
+    return
+  end
+
+  local messages = {
+    {role = "system", content = "You are a helpful coding assistant. Based on the users prompt and context, write the code or response.  If the user is asking you to write some code, only generate the code they need with no additional formatting or text. The code you generate is written directly to the current file so make sure it is valid code."},
+    {role = "user", content = prompt .. file_content}
+  }
+  
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local lines = {}
+  
+  call_groq_api_stream(messages, function(content)
+    if content then
+      local new_lines = vim.split(content, "\n", true)
+      for i, line in ipairs(new_lines) do
+        if i == 1 then
+          -- Append to the current line
+          local current_line = vim.api.nvim_buf_get_lines(0, row-1, row, false)[1]
+          vim.api.nvim_buf_set_lines(0, row-1, row, false, {current_line .. line})
+        else
+          -- Insert new lines
+          vim.api.nvim_buf_set_lines(0, row, row, false, {line})
+          row = row + 1
+        end
+      end
+      vim.api.nvim_win_set_cursor(0, {row, col})
+    else
+      -- End of stream, do any cleanup if needed
+    end
+  end)
+end
+
+
 
 return M
