@@ -99,7 +99,7 @@ function M.edit_code(opts)
   local selected_text = table.concat(vim.api.nvim_buf_get_lines(0, start_line, end_line, false), "\n")
   local prompt = opts.args
   local messages = {
-	  {role = "system", content = "You are a helpful coding assistant. Based on the users prompt, and the selected code, rewrite the selection with any necessary edits based on the users prompt.  The user is asking you to write some code, only generate the code they need with no additional formatting or text. The code you generate is written directly to the current file so make sure it is valid code."},
+	  {role = "system", content = "You are a helpful coding assistant. Based on the users prompt, and the selected code, rewrite the selection with any necessary edits based on the users prompt.  All of the selected code will be deleted so make sure you rewrite it by incorporating both the old code and the new changes. The user is asking you to write some code, only generate the code they need with no additional formatting or text. The code you generate is written directly to the current file so make sure it is valid code."},
 	  {role = "user", content = prompt .. selected_text}
   }
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
