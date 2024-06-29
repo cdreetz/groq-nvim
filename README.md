@@ -55,16 +55,20 @@ To use GroqEdit, you begin by selecting some text, typically in visual mode, and
 
 ## Examples
 
+### Groq Generate
 ```
 :GroqGenerate write a python function that prints hello world
 ```
 
-![](https://github.com/cdreetz/groq-nvim/public/GroqGenerateGif.gif)
+![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqGenerateGif.gif)
 
+
+### Groq Edit
 
 ```
 :GroqGenerateWithContext write a new version of the method found in this file ./file.py
 ```
+![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqEditGif.gif)
 
 ```
 :GroqEdit rewrite this method while adding debug lines to it
