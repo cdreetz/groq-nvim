@@ -5,9 +5,7 @@ local json = vim.json
 
 -- Configuration
 M.config = {
-  api_key = "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",
   api_url = "https://api.groq.com/openai/v1/chat/completions",
-  model = "mixtral-8x7b-32768"
 }
 
 -- Debugging function
@@ -94,18 +92,7 @@ function M.edit_code(opts)
   local start_line = opts.line1 - 1
   local end_line = opts.line2
   local selected_text = table.concat(vim.api.nvim_buf_get_lines(0, start_line, end_line, false), "\n")
-  -- local prompt = opts.args .. "\n\n" .. selected_text
   local prompt = opts.args
- -- if opts.args and opts.args ~= "" then
- --         prompt = opts.args
- -- else
- --   prompt = vim.fn.input("Enter your editing prompt: ")
- -- end
- -- if prompt == "" then
- --   print("No prompt provided. Cancelling edit")
- --   return
- -- end
- -- local messages = {{role = "user", content = prompt}}
   local messages = {
 	  {role = "system", content = "You are a helpful coding assistant. Based on the users prompt, and the selected code, rewrite the selection with any necessary edits based on the users prompt.  The user is asking you to write some code, only generate the code they need with no additional formatting or text. The code you generate is written directly to the current file so make sure it is valid code."},
 	  {role = "user", content = prompt .. selected_text}
