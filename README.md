@@ -40,7 +40,7 @@ end)
 These are the current available commands
 
 ```
-- :GroqGenera
+- :GroqGenerate
 
 - :GroqGenerateWithContext
 
@@ -52,3 +52,17 @@ To use GroqGenerate, all you do is :GroqGenerate your prompt and the code will b
 To use GroqGenerateWithContext, you start with :GroqGenerateWithContext your prompt /path/to/context/file.py 
 
 To use GroqEdit, you begin by selecting some text, typically in visual mode, and then using :GroqEdit your prompt the selected code will be rewritten based on your prompt
+
+## Examples
+
+```
+:GroqGenerate write a python function that prints hello world
+```
+
+```
+:GroqGenerateWithContext write a new version of the method found in this file ./file.py
+```
+
+```
+:GroqEdit rewrite this method while adding debug lines to it
+```
