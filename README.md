@@ -59,6 +59,9 @@ To use GroqEdit, you begin by selecting some text, typically in visual mode, and
 :GroqGenerate write a python function that prints hello world
 ```
 
+![](https://github.com/cdreetz/groq-nvim/GroqGenerateGif.gif)
+
+
 ```
 :GroqGenerateWithContext write a new version of the method found in this file ./file.py
 ```
