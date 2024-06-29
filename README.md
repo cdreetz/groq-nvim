@@ -66,10 +66,11 @@ To use GroqEdit, you begin by selecting some text, typically in visual mode, and
 ### Groq Edit
 
 ```
-:GroqGenerateWithContext write a new version of the method found in this file ./file.py
+:GroqEdit rewrite this method while adding debug lines to it
 ```
 ![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqEditGif.gif)
 
+### Groq Generate With Context
 ```
-:GroqEdit rewrite this method while adding debug lines to it
+:GroqGenerateWithContext write a new version of the method found in this file ./file.py
 ```
