@@ -13,6 +13,26 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 With that installed, we can now add our packer setup to our `~/.config/nvim/init.lua`
 
+### Lazy Setup
+
+```lua
+---@type LazySpec
+return {
+  "cdreetz/groq-nvim",
+  enabled = true,
+
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    require("groq-nvim").setup({
+      api_key = "your_groq_api_key",
+      model = "llama3-70b-8192",
+    })
+  end,
+}
+```
+
+### Packer Setup
+
 ```lua
 -- packer setup
 vim.cmd [[packadd packer.nvim]]
