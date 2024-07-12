@@ -19,7 +19,7 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
-    
+
     -- Add groq-nvim plugin from GitHub
     use {
         'cdreetz/groq-nvim',
@@ -33,7 +33,6 @@ require('packer').startup(function(use)
     }
 end)
 ```
-
 
 ## Commands
 
@@ -49,28 +48,30 @@ These are the current available commands
 
 To use GroqGenerate, all you do is :GroqGenerate your prompt and the code will be generated at the place of the cursor
 
-To use GroqGenerateWithContext, you start with :GroqGenerateWithContext your prompt /path/to/context/file.py 
+To use GroqGenerateWithContext, you start with :GroqGenerateWithContext your prompt /path/to/context/file.py
 
 To use GroqEdit, you begin by selecting some text, typically in visual mode, and then using :GroqEdit your prompt the selected code will be rewritten based on your prompt
 
 ## Examples
 
 ### Groq Generate
+
 ```
 :GroqGenerate write a python function that prints hello world
 ```
 
 ![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqGenerateGif.gif)
 
-
 ### Groq Edit
 
 ```
 :GroqEdit rewrite this method while adding debug lines to it
 ```
+
 ![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqEditGif.gif)
 
 ### Groq Generate With Context
+
 ```
 :GroqGenerateWithContext write a new version of the method found in this file ./file.py
 ```
