@@ -16,6 +16,7 @@ With that installed, we can now add our packer setup to our `~/.config/nvim/init
 ```lua
 -- packer setup
 vim.cmd [[packadd packer.nvim]]
+
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
@@ -23,7 +24,7 @@ require('packer').startup(function(use)
     -- Add groq-nvim plugin from GitHub
     use {
         'cdreetz/groq-nvim',
-        requires = {'nvim-lua/plenary.nvim'},
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('groq-nvim').setup({
                 api_key = "your_groq_api_key",
