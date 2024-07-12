@@ -6,14 +6,14 @@ A Neovim plugin for interacting with the Groq API.
 
 If you don't have it already, install Packer with this command
 
-```
+```sh
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-With that installed, we can now add our packer setup to our '~/.config/nvim/init.lua'
+With that installed, we can now add our packer setup to our `~/.config/nvim/init.lua`
 
-```
+```lua
 -- packer setup
 vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
@@ -38,7 +38,7 @@ end)
 
 These are the current available commands
 
-```
+```vim
 - :GroqGenerate
 
 - :GroqGenerateWithContext
@@ -46,17 +46,17 @@ These are the current available commands
 - :GroqEdit
 ```
 
-To use GroqGenerate, all you do is :GroqGenerate your prompt and the code will be generated at the place of the cursor
+To use `GroqGenerate`, all you do is `:GroqGenerate` your prompt and the code will be generated at the place of the cursor
 
-To use GroqGenerateWithContext, you start with :GroqGenerateWithContext your prompt /path/to/context/file.py
+To use `GroqGenerateWithContext`, you start with `:GroqGenerateWithContext` your prompt `/path/to/context/file.py`
 
-To use GroqEdit, you begin by selecting some text, typically in visual mode, and then using :GroqEdit your prompt the selected code will be rewritten based on your prompt
+To use `GroqEdit`, you begin by selecting some text, typically in visual mode, and then using `:GroqEdit` your prompt the selected code will be rewritten based on your prompt
 
 ## Examples
 
 ### Groq Generate
 
-```
+```vim
 :GroqGenerate write a python function that prints hello world
 ```
 
@@ -64,7 +64,7 @@ To use GroqEdit, you begin by selecting some text, typically in visual mode, and
 
 ### Groq Edit
 
-```
+```vim
 :GroqEdit rewrite this method while adding debug lines to it
 ```
 
@@ -72,6 +72,6 @@ To use GroqEdit, you begin by selecting some text, typically in visual mode, and
 
 ### Groq Generate With Context
 
-```
+```vim
 :GroqGenerateWithContext write a new version of the method found in this file ./file.py
 ```
