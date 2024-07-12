@@ -81,7 +81,7 @@ To use `GroqEdit`, you begin by selecting some text, typically in visual mode, a
 :GroqGenerate write a python function that prints hello world
 ```
 
-![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqGenerateGif.gif)
+![Groq Generate Demo](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqGenerateGif.gif)
 
 ### Groq Edit
 
@@ -89,7 +89,7 @@ To use `GroqEdit`, you begin by selecting some text, typically in visual mode, a
 :GroqEdit rewrite this method while adding debug lines to it
 ```
 
-![](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqEditGif.gif)
+![Groq Edit Demo](https://github.com/cdreetz/groq-nvim/blob/master/public/GroqEditGif.gif)
 
 ### Groq Generate With Context
 
